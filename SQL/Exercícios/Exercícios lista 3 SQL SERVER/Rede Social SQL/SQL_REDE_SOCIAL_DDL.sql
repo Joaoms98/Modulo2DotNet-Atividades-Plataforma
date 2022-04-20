@@ -1,0 +1,28 @@
+CREATE DATABASE db_rede_social
+
+use db_rede_social
+
+CREATE TABLE Usuario(
+	Id INT PRIMARY KEY NOT NULL,
+	Email VARCHAR(50) NOT NULL,
+	Senha VARCHAR(50) NOT NULL,
+	Nome VARCHAR(50) NOT NULL,
+)
+
+CREATE TABLE Postagem(
+	Id INT PRIMARY KEY NOT NULL,
+	Titulo VARCHAR(50) NOT NULL,
+	Descricao VARCHAR(200) NULL,
+	Foto VARCHAR(200) NULL,
+	Fk_Criador INT NOT NULL,
+	FOREIGN KEY (Fk_Criador) REFERENCES Usuario (Id)
+)
+
+CREATE TABLE Grupos(
+	Id INT PRIMARY KEY NOT NULL,
+	Descricao VARCHAR(200) NOT NULL,
+	Fk_Postagem INT NOT NULL,
+	FK_Integrantes INT NULL,
+	FOREIGN KEY (Fk_Postagem) REFERENCES Postagem (Id),
+	FOREIGN KEY (Fk_Integrantes) REFERENCES Usuario (Id)
+)
