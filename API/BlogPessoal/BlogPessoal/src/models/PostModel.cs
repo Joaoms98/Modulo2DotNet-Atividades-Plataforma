@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace BlogPessoal.src.models
 {
@@ -15,5 +16,13 @@ namespace BlogPessoal.src.models
 
         [Required,StringLength(100)]
         public string Description { get; set; }
+
+        public string Photograph { get; set; }
+
+        [ForeignKey("Fk_Users")]
+        public UserModel Creator { get; set; }
+
+        [ForeignKey("Fk_Themes")]
+        public ThemeModel Theme { get; set; }
     }
 }

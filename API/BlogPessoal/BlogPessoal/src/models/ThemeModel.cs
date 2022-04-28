@@ -1,5 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace BlogPessoal.src.models
 {
@@ -12,6 +14,9 @@ namespace BlogPessoal.src.models
 
         [Required, StringLength(30)]
         public string Description { get; set; }
-        
+
+        [JsonIgnore]
+        public List<PostModel> Posts { get; set; }
+
     }
 }

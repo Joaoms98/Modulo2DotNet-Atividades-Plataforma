@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jvm18\\Desktop\\prograhmaisaoção\\Modulo2DotNet-Atividades-Plataforma-\\API\\BlogPessoal\\blogPessoalTeste\\blogPessoalTeste.csproj": {}
+    "C:\\Users\\jvm18\\Desktop\\prograhmaisaoção\\Modulo2DotNet-Atividades-Plataforma-\\API\\BlogPessoal\\BlogPessoalTeste\\BlogPessoalTeste.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jvm18\\Desktop\\prograhmaisaoção\\Modulo2DotNet-Atividades-Plataforma-\\API\\BlogPessoal\\blogPessoalTeste\\blogPessoalTeste.csproj": {
+    "C:\\Users\\jvm18\\Desktop\\prograhmaisaoção\\Modulo2DotNet-Atividades-Plataforma-\\API\\BlogPessoal\\BlogPessoalTeste\\BlogPessoalTeste.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jvm18\\Desktop\\prograhmaisaoção\\Modulo2DotNet-Atividades-Plataforma-\\API\\BlogPessoal\\blogPessoalTeste\\blogPessoalTeste.csproj",
-        "projectName": "blogPessoalTeste",
-        "projectPath": "C:\\Users\\jvm18\\Desktop\\prograhmaisaoção\\Modulo2DotNet-Atividades-Plataforma-\\API\\BlogPessoal\\blogPessoalTeste\\blogPessoalTeste.csproj",
+        "projectUniqueName": "C:\\Users\\jvm18\\Desktop\\prograhmaisaoção\\Modulo2DotNet-Atividades-Plataforma-\\API\\BlogPessoal\\BlogPessoalTeste\\BlogPessoalTeste.csproj",
+        "projectName": "BlogPessoalTeste",
+        "projectPath": "C:\\Users\\jvm18\\Desktop\\prograhmaisaoção\\Modulo2DotNet-Atividades-Plataforma-\\API\\BlogPessoal\\BlogPessoalTeste\\BlogPessoalTeste.csproj",
         "packagesPath": "C:\\Users\\jvm18\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jvm18\\Desktop\\prograhmaisaoção\\Modulo2DotNet-Atividades-Plataforma-\\API\\BlogPessoal\\blogPessoalTeste\\obj\\",
+        "outputPath": "C:\\Users\\jvm18\\Desktop\\prograhmaisaoção\\Modulo2DotNet-Atividades-Plataforma-\\API\\BlogPessoal\\BlogPessoalTeste\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\jvm18\\AppData\\Roaming\\NuGet\\NuGet.Config",

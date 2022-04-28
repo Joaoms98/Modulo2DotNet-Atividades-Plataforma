@@ -9,6 +9,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using BlogPessoal.src.data;
 
 namespace BlogPessoal
 {
@@ -21,22 +23,27 @@ namespace BlogPessoal
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        //String de conexão
         public void ConfigureServices(IServiceCollection services)
         {
+            //configuração banco de dados
             IConfigurationRoot config = new ConfigurationBuilder()
                 .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-                .AddJsonFile("appsettings.json")
+                .AddJsonFile("appsettings.json") //buscando o documento
                 .Build();
 
+            services.AddDbContext<AppBlogContext>(options => options.UseSqlServer(config.GetConnectionString("DefaultConnection"))); //relação using BlogPessoal.src.data;
+
+            //configuração controlador
             services.AddControllers();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        // Configurando a criação do banco de dados na inicialização
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,AppBlogContext context) //chamando o banco appblogcontext
         {
-            if (env.IsDevelopment())
+            if (env.IsDevelopment())  
             {
+                context.Database.EnsureCreated();  //criara o banco de dados
                 app.UseDeveloperExceptionPage();
             }
 

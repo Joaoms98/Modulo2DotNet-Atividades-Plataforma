@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "pNWhPl373ip00O5TRLF5/m06VbDO/CImZzIdo0c86Jm+rpEGdFTcwxPpoY69wn5gjoQBuWFPfhH44FnvPMhUUA==",
+  "dgSpecHash": "+rKgk6YJWEn55RFUJ4D5yQgUnluxR4mHaElHvpUxYBdRQ+RmmlZtrA/3Yits4tUr9m7rAKubPmXzYMbrVXddQw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\jvm18\\Desktop\\prograhmaisaoção\\Modulo2DotNet-Atividades-Plataforma-\\API\\BlogPessoal\\blogPessoalTeste\\blogPessoalTeste.csproj",
+  "projectFilePath": "C:\\Users\\jvm18\\Desktop\\prograhmaisaoção\\Modulo2DotNet-Atividades-Plataforma-\\API\\BlogPessoal\\BlogPessoalTeste\\BlogPessoalTeste.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jvm18\\.nuget\\packages\\coverlet.collector\\3.1.0\\coverlet.collector.3.1.0.nupkg.sha512",
     "C:\\Users\\jvm18\\.nuget\\packages\\microsoft.codecoverage\\16.11.0\\microsoft.codecoverage.16.11.0.nupkg.sha512",
