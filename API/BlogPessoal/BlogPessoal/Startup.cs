@@ -21,7 +21,7 @@ namespace BlogPessoal
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        public IConfiguration Configuration {get;}
 
         //String de conexão
         public void ConfigureServices(IServiceCollection services)
