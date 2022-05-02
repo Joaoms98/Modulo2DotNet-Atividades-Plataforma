@@ -1,5 +1,6 @@
 ﻿using BlogPessoal.src.dtos;
 using BlogPessoal.src.models;
+using System.Collections.Generic;
 
 namespace BlogPessoal.src.repositors
 {
@@ -12,12 +13,12 @@ namespace BlogPessoal.src.repositors
 
     public interface IUser
     {
-        void AddIUser(AddUserDTO User);
+        void AddUser(AddUserDTO User);
         void UpdateUser(UpdateUserDTO User);
         void DeleteUser(int id);
         UserModel GetUserById(int id);
         UserModel GetUserByEmail(string Email);
-        UserModel GetUSerByName(string Name);
+        List<UserModel> GetUserByName(string Name);
 
     }
 }
