@@ -19,6 +19,5 @@ namespace BlogPessoal.src.repositors
         UserModel GetUserById(int id);
         UserModel GetUserByEmail(string Email);
         List<UserModel> GetUserByName(string Name);
-
     }
 }

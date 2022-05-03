@@ -11,6 +11,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using BlogPessoal.src.data;
+using BlogPessoal.src.repositors;
+using BlogPessoal.src.repositors.implements;
 
 namespace BlogPessoal
 {
@@ -36,6 +38,10 @@ namespace BlogPessoal
 
             //configuração controlador
             services.AddControllers();
+
+            services.AddScoped<IUser, UserRepository>();
+            services.AddScoped<ITheme, ThemeRepository>();
+            services.AddScoped<IPost, PostRepository>();
         }
 
         // Configurando a criação do banco de dados na inicialização
