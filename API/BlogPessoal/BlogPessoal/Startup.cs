@@ -42,6 +42,11 @@ namespace BlogPessoal
             services.AddScoped<IUser, UserRepository>();
             services.AddScoped<ITheme, ThemeRepository>();
             services.AddScoped<IPost, PostRepository>();
+
+            //controllers
+            services.AddCors();
+            services.AddControllers();
+        
         }
 
         // Configurando a criação do banco de dados na inicialização
@@ -53,9 +58,15 @@ namespace BlogPessoal
                 app.UseDeveloperExceptionPage();
             }
 
+            //ambiente de produção
+            //Rotas
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseCors(c => c
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+            );
 
             app.UseEndpoints(endpoints =>
             {
