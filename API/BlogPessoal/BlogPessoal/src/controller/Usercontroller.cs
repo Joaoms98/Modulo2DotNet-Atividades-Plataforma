@@ -21,7 +21,7 @@ namespace BlogPessoal.src.controller
         #endregion
 
         #region Méthods
-        [HttpGet("id/idUser")]
+        [HttpGet("id/{idUser}")]
         public IActionResult GetUserById([FromRoute] int idUser)
         {
             var user = _repository.GetUserById(idUser);
@@ -43,7 +43,7 @@ namespace BlogPessoal.src.controller
             return Ok(users);
         }
 
-        [HttpGet("email/emailUser")]
+        [HttpGet("email/{emailUser}")]
         public IActionResult GetUserByEmail([FromRoute] string emailUser)
         {
             var user = _repository.GetUserByEmail(emailUser);
@@ -63,7 +63,7 @@ namespace BlogPessoal.src.controller
             _repository.AddUser(user);
             return Created($"api/Users/{user.Email}", user);
         }
-
+                
         [HttpPut]
         public IActionResult UpdateUser([FromBody] UpdateUserDTO user)
         {
