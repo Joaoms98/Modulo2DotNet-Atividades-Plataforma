@@ -8662,19 +8662,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\jvm18\\.nuget\\packages\\": {}
+    "C:\\Users\\Victor\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jvm18\\Desktop\\prograhmaisaoção\\Modulo2DotNet-Atividades-Plataforma-\\API\\BlogPessoal\\blogPessoalTeste\\blogPessoalTeste.csproj",
-      "projectName": "blogPessoalTeste",
-      "projectPath": "C:\\Users\\jvm18\\Desktop\\prograhmaisaoção\\Modulo2DotNet-Atividades-Plataforma-\\API\\BlogPessoal\\blogPessoalTeste\\blogPessoalTeste.csproj",
-      "packagesPath": "C:\\Users\\jvm18\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jvm18\\Desktop\\prograhmaisaoção\\Modulo2DotNet-Atividades-Plataforma-\\API\\BlogPessoal\\blogPessoalTeste\\obj\\",
+      "projectUniqueName": "D:\\Biblioteca\\Documents\\Coisinhas do joao iudsjqooashdfuhsdufdhfadhf\\Modulo2DotNet-Atividades-Plataforma-\\API\\BlogPessoal\\BlogPessoalTeste\\BlogPessoalTeste.csproj",
+      "projectName": "BlogPessoalTeste",
+      "projectPath": "D:\\Biblioteca\\Documents\\Coisinhas do joao iudsjqooashdfuhsdufdhfadhf\\Modulo2DotNet-Atividades-Plataforma-\\API\\BlogPessoal\\BlogPessoalTeste\\BlogPessoalTeste.csproj",
+      "packagesPath": "C:\\Users\\Victor\\.nuget\\packages\\",
+      "outputPath": "D:\\Biblioteca\\Documents\\Coisinhas do joao iudsjqooashdfuhsdufdhfadhf\\Modulo2DotNet-Atividades-Plataforma-\\API\\BlogPessoal\\BlogPessoalTeste\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\jvm18\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Victor\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -8688,8 +8688,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\jvm18\\Desktop\\prograhmaisaoção\\Modulo2DotNet-Atividades-Plataforma-\\API\\BlogPessoal\\BlogPessoal\\BlogPessoal.csproj": {
-              "projectPath": "C:\\Users\\jvm18\\Desktop\\prograhmaisaoção\\Modulo2DotNet-Atividades-Plataforma-\\API\\BlogPessoal\\BlogPessoal\\BlogPessoal.csproj"
+            "D:\\Biblioteca\\Documents\\Coisinhas do joao iudsjqooashdfuhsdufdhfadhf\\Modulo2DotNet-Atividades-Plataforma-\\API\\BlogPessoal\\BlogPessoal\\BlogPessoal.csproj": {
+              "projectPath": "D:\\Biblioteca\\Documents\\Coisinhas do joao iudsjqooashdfuhsdufdhfadhf\\Modulo2DotNet-Atividades-Plataforma-\\API\\BlogPessoal\\BlogPessoal\\BlogPessoal.csproj"
             }
           }
         }
@@ -8744,7 +8744,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }

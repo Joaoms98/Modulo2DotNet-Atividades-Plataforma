@@ -17,6 +17,5 @@ namespace BlogPessoal.src.models
 
         [JsonIgnore]
         public List<PostModel> Posts { get; set; }
-
     }
 }

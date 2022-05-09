@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jvm18\\Desktop\\prograhmaisaoção\\Modulo2DotNet-Atividades-Plataforma-\\API\\BlogPessoal\\BlogPessoal\\BlogPessoal.csproj": {}
+    "D:\\Biblioteca\\Documents\\Coisinhas do joao iudsjqooashdfuhsdufdhfadhf\\Modulo2DotNet-Atividades-Plataforma-\\API\\BlogPessoal\\BlogPessoal\\BlogPessoal.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jvm18\\Desktop\\prograhmaisaoção\\Modulo2DotNet-Atividades-Plataforma-\\API\\BlogPessoal\\BlogPessoal\\BlogPessoal.csproj": {
+    "D:\\Biblioteca\\Documents\\Coisinhas do joao iudsjqooashdfuhsdufdhfadhf\\Modulo2DotNet-Atividades-Plataforma-\\API\\BlogPessoal\\BlogPessoal\\BlogPessoal.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jvm18\\Desktop\\prograhmaisaoção\\Modulo2DotNet-Atividades-Plataforma-\\API\\BlogPessoal\\BlogPessoal\\BlogPessoal.csproj",
+        "projectUniqueName": "D:\\Biblioteca\\Documents\\Coisinhas do joao iudsjqooashdfuhsdufdhfadhf\\Modulo2DotNet-Atividades-Plataforma-\\API\\BlogPessoal\\BlogPessoal\\BlogPessoal.csproj",
         "projectName": "BlogPessoal",
-        "projectPath": "C:\\Users\\jvm18\\Desktop\\prograhmaisaoção\\Modulo2DotNet-Atividades-Plataforma-\\API\\BlogPessoal\\BlogPessoal\\BlogPessoal.csproj",
-        "packagesPath": "C:\\Users\\jvm18\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jvm18\\Desktop\\prograhmaisaoção\\Modulo2DotNet-Atividades-Plataforma-\\API\\BlogPessoal\\BlogPessoal\\obj\\",
+        "projectPath": "D:\\Biblioteca\\Documents\\Coisinhas do joao iudsjqooashdfuhsdufdhfadhf\\Modulo2DotNet-Atividades-Plataforma-\\API\\BlogPessoal\\BlogPessoal\\BlogPessoal.csproj",
+        "packagesPath": "C:\\Users\\Victor\\.nuget\\packages\\",
+        "outputPath": "D:\\Biblioteca\\Documents\\Coisinhas do joao iudsjqooashdfuhsdufdhfadhf\\Modulo2DotNet-Atividades-Plataforma-\\API\\BlogPessoal\\BlogPessoal\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\jvm18\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Victor\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -73,7 +73,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }
