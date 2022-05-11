@@ -1,5 +1,6 @@
 ﻿using BlogPessoal.src.dtos;
 using BlogPessoal.src.repositors;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,7 @@ namespace BlogPessoal.src.controller
 
         #region methods
         [HttpGet("id/{idPost}")]
+        [Authorize]
         public IActionResult GetPostById([FromRoute] int idPost)
         {
             var post = _repository.GetPostById(idPost);
@@ -34,6 +36,7 @@ namespace BlogPessoal.src.controller
             return Ok(post);
         }
         [HttpGet]
+        [Authorize]
         public IActionResult GetAllByPosts()
         {
             var list = _repository.GetAllByPosts();
@@ -44,6 +47,7 @@ namespace BlogPessoal.src.controller
         }
 
         [HttpGet("Search")]
+        [Authorize]
         public IActionResult GetPostsbySearch(
            [FromQuery] string title,
            [FromQuery] string descriptiontheme,
@@ -56,15 +60,17 @@ namespace BlogPessoal.src.controller
             return Ok(posts);
         }   
         [HttpPost]
-        public IActionResult AddIPost([FromBody] AddPostDTO post)
+        [Authorize]
+        public IActionResult AddPost([FromBody] AddPostDTO post)
         {
             if (!ModelState.IsValid) return BadRequest();
 
-            _repository.AddIPost(post);
+            _repository.AddPost(post);
 
             return Created($"api/Posts", post);
         }
         [HttpPut]
+        [Authorize]
         public IActionResult UpdatePost([FromBody] UpdatePostDTO post)
         {
             if (!ModelState.IsValid) return BadRequest();
@@ -74,6 +80,7 @@ namespace BlogPessoal.src.controller
             return Ok(post);
         }
         [HttpDelete("delete/{idPost}")]
+        [Authorize]
         public IActionResult DeletePost([FromRoute] int idPost)
         {
             _repository.DeletePost(idPost);

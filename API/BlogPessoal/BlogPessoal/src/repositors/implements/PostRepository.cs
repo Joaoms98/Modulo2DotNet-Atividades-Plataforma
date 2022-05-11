@@ -20,8 +20,8 @@ namespace BlogPessoal.src.repositors.implements
         }
         #endregion Constructors
 
-        #region métodos
-        public void AddIPost(AddPostDTO Post)
+        #region methods
+        public void AddPost(AddPostDTO Post)
         {
                 _context.Posts.Add(new PostModel
                 {
@@ -29,9 +29,9 @@ namespace BlogPessoal.src.repositors.implements
                     Description = Post.Description,
                     Photograph = Post.Photograph,
                     Creator = _context.Users.FirstOrDefault(
-                u => u.Email == Post.EmailCreator),
+                u => u.Email == Post.Creator),
                     Theme = _context.Themes.FirstOrDefault(
-                t => t.Description == Post.DescriptionTheme)
+                t => t.Description == Post.Theme)
                 });
                 _context.SaveChanges();
         }
@@ -120,10 +120,10 @@ namespace BlogPessoal.src.repositors.implements
             existingpost.Description = Post.Description;
             existingpost.Photograph = Post.Photograph;
             existingpost.Theme = _context.Themes.FirstOrDefault(
-            t => t.Description == Post.DescriptionTheme);
+            t => t.Description == Post.Theme);
             _context.Posts.Update(existingpost);
             _context.SaveChanges();
         }
-        #endregion métodos
+        #endregion
     }
 }

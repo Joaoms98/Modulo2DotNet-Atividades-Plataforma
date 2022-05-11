@@ -19,18 +19,18 @@ namespace BlogPessoal.src.dtos
         public string Photograph { get; set; }
 
         [Required,StringLength(30)]
-        public string EmailCreator { get; set; }
+        public string Creator { get; set; }
        
         [Required]
-        public string DescriptionTheme { get; set; }
+        public string Theme { get; set; }
 
-        public AddPostDTO(string title,string description,string photograph,string emailCreator,string descriptionTheme)
+        public AddPostDTO(string title,string description,string photograph,string creator,string theme)
         {
             Title = title;
             Description = description;
             Photograph = photograph;
-            EmailCreator = emailCreator;
-            DescriptionTheme = descriptionTheme;
+            Creator = creator;
+            Theme = theme;
         }
     }
     /// <summary>
@@ -53,14 +53,14 @@ namespace BlogPessoal.src.dtos
         public string Photograph { get; set; }
 
         [Required]
-        public string DescriptionTheme { get; set; }
+        public string Theme { get; set; }
 
-        public UpdatePostDTO(string title, string description, string photograph, string emailCreator, string descriptionTheme)
+        public UpdatePostDTO(string title, string description, string photograph, string theme)
         {
             Title = title;
             Description = description;
             Photograph = photograph;
-            DescriptionTheme = descriptionTheme;
+            Theme = theme;
         }
     }
 }

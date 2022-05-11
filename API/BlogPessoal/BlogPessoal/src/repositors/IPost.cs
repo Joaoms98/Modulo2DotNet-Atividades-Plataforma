@@ -12,11 +12,11 @@ namespace BlogPessoal.src.repositors
     /// </summary>
     public interface IPost
     {
-        void AddIPost(AddPostDTO Post);
+        void AddPost(AddPostDTO Post);
         void UpdatePost(UpdatePostDTO Post);
         void DeletePost(int id);
         PostModel GetPostById(int id);
         List<PostModel> GetAllByPosts();
-        List<PostModel> GetPostsbySearch(string title, string descriptiontheme, string namecriator);
+        List<PostModel> GetPostsbySearch(string title, string theme, string creator);
     }
 }

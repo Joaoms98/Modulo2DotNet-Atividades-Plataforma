@@ -1,5 +1,6 @@
 ﻿using BlogPessoal.src.dtos;
 using BlogPessoal.src.repositors;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,7 @@ namespace BlogPessoal.src.controller
 
         #region Methods
         [HttpPost]
+        [Authorize]
         public IActionResult AddTheme([FromBody] AddThemeDTO theme)
         {
             if (!ModelState.IsValid)
@@ -36,6 +38,7 @@ namespace BlogPessoal.src.controller
         }
 
         [HttpDelete("delete/{idTheme}")]
+        [Authorize(Roles ="ADMIN")]
         public IActionResult DeleteUser([FromRoute] int idtheme)
         {
             _repository.DeleteTheme(idtheme);
@@ -43,6 +46,7 @@ namespace BlogPessoal.src.controller
         }
 
         [HttpGet("id/{idtheme}")]
+        [Authorize]
         public IActionResult GetThemeById([FromRoute] int idtheme)
         {
             var theme = _repository.GetThemeById(idtheme);
@@ -54,6 +58,7 @@ namespace BlogPessoal.src.controller
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult GetThemeByDescription([FromQuery] string  description)
         {
             var themes = _repository.GetThemeByDescription(description);
@@ -65,6 +70,7 @@ namespace BlogPessoal.src.controller
         }
 
         [HttpPut]
+        [Authorize(Roles ="ADMIN")]
         public IActionResult UpdateTheme([FromBody] UpdateThemeDTO theme)
         {
             if (!ModelState.IsValid)

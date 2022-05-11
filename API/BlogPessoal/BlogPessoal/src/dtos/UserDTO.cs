@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlogPessoal.src.utilities;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace BlogPessoal.src.dtos
@@ -22,12 +23,16 @@ namespace BlogPessoal.src.dtos
 
         public string Photograph { get; set; }
 
-        public AddUserDTO(string name, string email,string password,string photograph)
+        [Required]
+        public UserType Type { get; set; }
+
+        public AddUserDTO(string name, string email,string password,string photograph,UserType type )
         {
             Name = name;
             Email = email;
             Password = password;
             Photograph = photograph;
+            Type = type;
         }
     }
     /// <summary>
@@ -49,7 +54,7 @@ namespace BlogPessoal.src.dtos
 
         public string Photograph { get; set; }
 
-        public UpdateUserDTO(string name, string password, string photograph)
+        public UpdateUserDTO(string name, string password, string photograph,string type)
         {
             Name = name;
             Password = password;

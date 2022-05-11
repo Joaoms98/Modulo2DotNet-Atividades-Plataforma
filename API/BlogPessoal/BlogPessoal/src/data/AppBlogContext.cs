@@ -5,7 +5,7 @@ namespace BlogPessoal.src.data
 {
     public class AppBlogContext : DbContext
     {
-        public DbSet<UserModel> Users { get; set; }  //contexto da tabela
+        public DbSet<UserModel> Users { get; set; } 
         public DbSet<ThemeModel> Themes { get; set; }
         public DbSet<PostModel> Posts { get; set; }
 

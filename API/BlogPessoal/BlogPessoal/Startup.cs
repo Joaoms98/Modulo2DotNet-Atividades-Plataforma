@@ -13,6 +13,10 @@ using Microsoft.EntityFrameworkCore;
 using BlogPessoal.src.data;
 using BlogPessoal.src.repositors;
 using BlogPessoal.src.repositors.implements;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System.Text;
+using Microsoft.IdentityModel.Tokens;
+using BlogPessoal.src.services;
 
 namespace BlogPessoal
 {
@@ -36,9 +40,6 @@ namespace BlogPessoal
 
             services.AddDbContext<AppBlogContext>(options => options.UseSqlServer(config.GetConnectionString("DefaultConnection"))); //relação using BlogPessoal.src.data;
 
-            //configuração controlador
-            services.AddControllers();
-
             services.AddScoped<IUser, UserRepository>();
             services.AddScoped<ITheme, ThemeRepository>();
             services.AddScoped<IPost, PostRepository>();
@@ -46,7 +47,30 @@ namespace BlogPessoal
             //controllers
             services.AddCors();
             services.AddControllers();
-        
+
+            // Configuração de Serviços
+            services.AddScoped<IAuthentication, AuthenticationServices>();
+
+            // Configuração do Token Autenticação JWTBearer
+            var key = Encoding.ASCII.GetBytes(Configuration["Settings:Secret"]);
+            services.AddAuthentication(a =>
+            {
+                a.DefaultAuthenticateScheme =
+                JwtBearerDefaults.AuthenticationScheme;
+                a.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(b =>
+            {
+                b.RequireHttpsMetadata = false;
+                b.SaveToken = true;
+                b.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
+            }
+            );
         }
 
         // Configurando a criação do banco de dados na inicialização
@@ -67,6 +91,10 @@ namespace BlogPessoal
                 .AllowAnyMethod()
                 .AllowAnyHeader()
             );
+
+            // Autenticação e Autorização
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
