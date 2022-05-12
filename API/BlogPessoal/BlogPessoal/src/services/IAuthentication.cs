@@ -10,8 +10,8 @@ namespace BlogPessoal.src.services
     public interface IAuthentication
     {
         string EncodePassword(string password);
-        void CreateUserWithoutDuplicate(AddUserDTO user);
+        Task CreateUserWithoutDuplicateAsync(AddUserDTO user);
         string GenerateToken(UserModel user);
-        AuthorizationDTO GetAuthorization(AuthenticationDTO authentication);
+        Task<AuthorizationDTO> GetAuthorizationAsync(AuthenticationDTO authentication);
     }
 }

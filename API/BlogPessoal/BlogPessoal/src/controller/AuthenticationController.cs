@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using BlogPessoal.src.dtos;
 using BlogPessoal.src.services;
 using Microsoft.AspNetCore.Authorization;
@@ -23,12 +24,12 @@ namespace BlogPessoal.src.controladores
         #region Métodos
         [HttpPost]
         [AllowAnonymous]
-        public IActionResult Authenticate([FromBody] AuthenticationDTO authentication)
+        public async Task<ActionResult> AuthenticateAsync([FromBody] AuthenticationDTO authentication)
         {
             if (!ModelState.IsValid) return BadRequest();
             try
             {
-                var autorizacao = _services.GetAuthorization(authentication);
+                var autorizacao = await _services.GetAuthorizationAsync(authentication);
                 return Ok(autorizacao);
             }
             catch (Exception ex)

@@ -1,8 +1,10 @@
 ﻿using BlogPessoal.src.data;
 using BlogPessoal.src.dtos;
 using BlogPessoal.src.models;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace BlogPessoal.src.repositors.implements
 {
@@ -20,9 +22,9 @@ namespace BlogPessoal.src.repositors.implements
         #endregion Constructors
 
         #region métods
-        public void AddUser(AddUserDTO User)
+        public async Task AddUserAsync(AddUserDTO User)
         {
-            _context.Users.Add(new UserModel
+            await _context.Users.AddAsync(new UserModel
             {
                 Name = User.Name,
                 Email = User.Email,
@@ -30,37 +32,37 @@ namespace BlogPessoal.src.repositors.implements
                 Photograph = User.Photograph,
                 Type = User.Type
             });
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void DeleteUser(int id)
+        public async Task DeleteUserAsync(int id)
         {
-            _context.Users.Remove(GetUserById(id));
-            _context.SaveChanges();
+            _context.Users.Remove(await GetUserByIdAsync(id));
+            await _context.SaveChangesAsync();
         }
 
-        public UserModel GetUserByEmail(string Email)
+        public async Task<UserModel> GetUserByEmailAsync(string Email)
         {
-            return _context.Users
-                        .FirstOrDefault(u => u.Email == Email);
+            return await _context.Users
+                        .FirstOrDefaultAsync(u => u.Email == Email);
         }
 
-        public UserModel GetUserById(int id)
+        public async Task<UserModel> GetUserByIdAsync(int id)
         {
-            return _context.Users
-                .FirstOrDefault(u => u.Id == id);
+            return await _context.Users
+                .FirstOrDefaultAsync(u => u.Id == id);
         }
 
-        public List<UserModel> GetUserByName(string Name)
+        public  async Task<List<UserModel>> GetUserByNameAsync(string Name)
         {
-            return _context.Users
+            return await _context.Users
                         .Where(u => u.Name.Contains(Name))
-                        .ToList();
+                        .ToListAsync();
         }
 
-        public void UpdateUser(UpdateUserDTO User)
+        public async Task UpdateUserAsync(UpdateUserDTO User)
         {
-            var userModel = GetUserById(User.Id);
+            var userModel = await GetUserByIdAsync(User.Id);
             userModel.Name = User.Name;
             userModel.Password = User.Password;
             userModel.Photograph = User.Photograph;

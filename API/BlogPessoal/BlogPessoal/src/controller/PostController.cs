@@ -28,32 +28,31 @@ namespace BlogPessoal.src.controller
         #region methods
         [HttpGet("id/{idPost}")]
         [Authorize]
-        public IActionResult GetPostById([FromRoute] int idPost)
+        public async Task<ActionResult> GetPostByIdAsync([FromRoute] int idPost)
         {
-            var post = _repository.GetPostById(idPost);
+            var post = await _repository.GetPostByIdAsync(idPost);
 
             if (post == null) return NotFound();
             return Ok(post);
         }
         [HttpGet]
         [Authorize]
-        public IActionResult GetAllByPosts()
+        public async Task<ActionResult> GetAllByPostsAsync()
         {
-            var list = _repository.GetAllByPosts();
+            var list = await _repository.GetAllByPostsAsync();
 
             if (list.Count < 1) return NoContent();
-
             return Ok(list);
         }
 
         [HttpGet("Search")]
         [Authorize]
-        public IActionResult GetPostsbySearch(
+        public async Task<ActionResult> GetPostsbySearchAsync(
            [FromQuery] string title,
            [FromQuery] string descriptiontheme,
            [FromQuery] string namecriator)
         {
-            var posts = _repository.GetPostsbySearch(title, descriptiontheme, namecriator);
+            var posts = await _repository.GetPostsbySearchAsync(title, descriptiontheme, namecriator);
 
             if (posts.Count < 1) return NoContent();
 
@@ -61,29 +60,29 @@ namespace BlogPessoal.src.controller
         }   
         [HttpPost]
         [Authorize]
-        public IActionResult AddPost([FromBody] AddPostDTO post)
+        public async Task<ActionResult> AddPostAsync([FromBody] AddPostDTO post)
         {
             if (!ModelState.IsValid) return BadRequest();
 
-            _repository.AddPost(post);
+            await _repository.AddPostAsync(post);
 
             return Created($"api/Posts", post);
         }
         [HttpPut]
         [Authorize]
-        public IActionResult UpdatePost([FromBody] UpdatePostDTO post)
+        public async Task<ActionResult> UpdatePostasync([FromBody] UpdatePostDTO post)
         {
             if (!ModelState.IsValid) return BadRequest();
 
-            _repository.UpdatePost(post);
+            await _repository.UpdatePostAsync(post);
 
             return Ok(post);
         }
         [HttpDelete("delete/{idPost}")]
         [Authorize]
-        public IActionResult DeletePost([FromRoute] int idPost)
+        public async Task<ActionResult> DeletePostAsync([FromRoute] int idPost)
         {
-            _repository.DeletePost(idPost);
+            await _repository.DeletePostAsync(idPost);
             return NoContent();
         }
         #endregion

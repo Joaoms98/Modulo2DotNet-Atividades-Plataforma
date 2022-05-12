@@ -29,15 +29,15 @@ namespace BlogPessoal.src.repositors.implements
         #endregion
         
         #region methods
-        public void CreateUserWithoutDuplicate(AddUserDTO dto)
+        public async Task CreateUserWithoutDuplicateAsync(AddUserDTO dto)
         {
-            var user = _repository.GetUserByEmail(dto.Email);
+            var user = await _repository.GetUserByEmailAsync(dto.Email);
 
             if (user != null) throw new Exception("Este email já está sendo utilizado");
 
             dto.Password = EncodePassword(dto.Password);
 
-            _repository.AddUser(dto);
+            await _repository.AddUserAsync(dto);
         }
 
         public string EncodePassword(string password)
@@ -68,9 +68,9 @@ namespace BlogPessoal.src.repositors.implements
             return tokenManipulador.WriteToken(token);
         }
     
-        public AuthorizationDTO GetAuthorization(AuthenticationDTO authentication)
+        public async Task<AuthorizationDTO> GetAuthorizationAsync(AuthenticationDTO authentication)
         {
-            var user = _repository.GetUserByEmail(authentication.Email);
+            var user = await _repository.GetUserByEmailAsync(authentication.Email);
             
             if (user == null) throw new Exception("Usuário não encontrado");
 

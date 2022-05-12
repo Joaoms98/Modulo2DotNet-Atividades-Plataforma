@@ -28,28 +28,28 @@ namespace BlogPessoal.src.controller
         #region Methods
         [HttpPost]
         [Authorize]
-        public IActionResult AddTheme([FromBody] AddThemeDTO theme)
+        public async Task<ActionResult> AddThemeAsync([FromBody] AddThemeDTO theme)
         {
             if (!ModelState.IsValid)
             return BadRequest();
 
-            _repository.AddTheme(theme);
+            await _repository.AddThemeAsync(theme);
             return Created($"api/theme/{theme.Description}", theme);
         }
 
         [HttpDelete("delete/{idTheme}")]
         [Authorize(Roles ="ADMIN")]
-        public IActionResult DeleteUser([FromRoute] int idtheme)
+        public async Task <ActionResult> DeleteUserAsync([FromRoute] int idtheme)
         {
-            _repository.DeleteTheme(idtheme);
+            await _repository.DeleteThemeAsync(idtheme);
             return NoContent();
         }
 
         [HttpGet("id/{idtheme}")]
         [Authorize]
-        public IActionResult GetThemeById([FromRoute] int idtheme)
+        public async Task <ActionResult> GetThemeByIdAsync([FromRoute] int idtheme)
         {
-            var theme = _repository.GetThemeById(idtheme);
+            var theme = await _repository.GetThemeByIdAsync(idtheme);
 
             if (theme == null)
                 return NotFound();
@@ -59,9 +59,9 @@ namespace BlogPessoal.src.controller
 
         [HttpGet]
         [Authorize]
-        public IActionResult GetThemeByDescription([FromQuery] string  description)
+        public async Task<ActionResult> GetThemeByDescriptionAsync([FromQuery] string  description)
         {
-            var themes = _repository.GetThemeByDescription(description);
+            var themes = await _repository.GetThemeByDescriptionAsync(description);
 
             if (themes.Count < 1)
                 return NotFound();
@@ -71,12 +71,12 @@ namespace BlogPessoal.src.controller
 
         [HttpPut]
         [Authorize(Roles ="ADMIN")]
-        public IActionResult UpdateTheme([FromBody] UpdateThemeDTO theme)
+        public async Task<ActionResult> UpdateThemeAsync([FromBody] UpdateThemeDTO theme)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            _repository.UpdateTheme(theme);
+            await _repository.UpdateThemeAsync(theme);
             return Ok(theme);
         }
         #endregion

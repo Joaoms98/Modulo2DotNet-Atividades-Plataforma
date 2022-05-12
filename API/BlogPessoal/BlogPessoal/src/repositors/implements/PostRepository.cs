@@ -4,6 +4,7 @@ using BlogPessoal.src.models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace BlogPessoal.src.repositors.implements
 {
@@ -21,101 +22,103 @@ namespace BlogPessoal.src.repositors.implements
         #endregion Constructors
 
         #region methods
-        public void AddPost(AddPostDTO Post)
+        public async Task AddPostAsync(AddPostDTO Post)
         {
-                _context.Posts.Add(new PostModel
-                {
-                    Title = Post.Title,
-                    Description = Post.Description,
-                    Photograph = Post.Photograph,
-                    Creator = _context.Users.FirstOrDefault(
+            await _context.Posts.AddAsync(new PostModel
+            {
+                Title = Post.Title,
+                Description = Post.Description,
+                Photograph = Post.Photograph,
+                Creator = _context.Users.FirstOrDefault(
                 u => u.Email == Post.Creator),
-                    Theme = _context.Themes.FirstOrDefault(
-                t => t.Description == Post.Theme)
-                });
-                _context.SaveChanges();
+                Theme = _context.Themes.FirstOrDefault(
+                 t => t.Description == Post.Theme)
+            });
+            await _context.SaveChangesAsync();
         }
 
-        public void DeletePost(int id)
+        public async Task DeletePostAsync(int id)
         {
-            _context.Posts.Remove(GetPostById(id));
-            _context.SaveChanges();
+            _context.Posts.Remove(await GetPostByIdAsync(id));
+            await _context.SaveChangesAsync();
         }
 
-        public List<PostModel> GetAllByPosts()
+        public async Task <List<PostModel>> GetAllByPostsAsync()
         {
-            return _context.Posts.ToList();
+            return await _context.Posts.ToListAsync();
         }
 
-        public PostModel GetPostById(int id)
+        public async Task<PostModel> GetPostByIdAsync(int id)
         {
-            return _context.Posts
-                .FirstOrDefault(u => u.Id == id);
+            return await _context.Posts
+                .Include(u => u.Creator)
+                .Include(u => u.Theme)
+                .FirstOrDefaultAsync(u => u.Id == id);
         }
 
-        public List<PostModel> GetPostsbySearch(string title, string descriptiontheme, string namecriator)
+        public async Task<List<PostModel>> GetPostsbySearchAsync(string title, string descriptiontheme, string namecriator)
         {
             switch (title, descriptiontheme, namecriator)
             {
                 case (null, null, null):
-                    return GetAllByPosts();
+                    return await GetAllByPostsAsync();
                 case (null, null, _):
-                    return _context.Posts
+                    return await _context.Posts
                     .Include(p => p.Theme)
                     .Include(p => p.Creator)
                     .Where(p => p.Creator.Name.Contains(namecriator))
-                    .ToList();
+                    .ToListAsync();
                 case (null, _, null):
-                    return _context.Posts
+                    return await _context.Posts
                     .Include(p => p.Theme)
                     .Include(p => p.Creator)
                     .Where(p => p.Theme.Description.Contains(descriptiontheme))
-                    .ToList();
+                    .ToListAsync();
                 case (_, null, null):
-                    return _context.Posts
+                    return await _context.Posts
                     .Include(p => p.Theme)
                     .Include(p => p.Creator)
                     .Where(p => p.Title.Contains(title))
-                    .ToList();
+                    .ToListAsync();
                 case (_, _, null):
-                    return _context.Posts
+                    return await _context.Posts
                     .Include(p => p.Theme)
                     .Include(p => p.Creator)
                     .Where(p =>
                     p.Title.Contains(title) &
                     p.Theme.Description.Contains(descriptiontheme))
-                    .ToList();
+                    .ToListAsync();
                 case (null, _, _):
-                    return _context.Posts
+                    return await _context.Posts
                     .Include(p => p.Theme)
                     .Include(p => p.Creator)
                     .Where(p =>
                     p.Theme.Description.Contains(descriptiontheme) &
                     p.Creator.Name.Contains(namecriator))
-                    .ToList();
+                    .ToListAsync();
                 case (_, null, _):
-                    return _context.Posts
+                    return await _context.Posts
                     .Include(p => p.Theme)
                     .Include(p => p.Creator)
                     .Where(p =>
                     p.Title.Contains(title) &
                     p.Creator.Name.Contains(namecriator))
-                    .ToList();
+                    .ToListAsync();
                 case (_, _, _):
-                    return _context.Posts
+                    return await _context.Posts
                     .Include(p => p.Theme)
                     .Include(p => p.Creator)
                     .Where(p =>
                     p.Title.Contains(title) |
                     p.Theme.Description.Contains(descriptiontheme) |
                     p.Creator.Name.Contains(namecriator))
-                    .ToList();
+                    .ToListAsync();
             }
         }
 
-        public void UpdatePost(UpdatePostDTO Post)
+        public async Task UpdatePostAsync(UpdatePostDTO Post)
         {
-            var existingpost = GetPostById(Post.Id);
+            var existingpost = await GetPostByIdAsync(Post.Id);
             existingpost.Title = Post.Title;
             existingpost.Description = Post.Description;
             existingpost.Photograph = Post.Photograph;
