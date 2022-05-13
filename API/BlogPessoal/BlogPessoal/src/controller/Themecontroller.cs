@@ -1,6 +1,8 @@
 ﻿using BlogPessoal.src.dtos;
+using BlogPessoal.src.models;
 using BlogPessoal.src.repositors;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -26,6 +28,24 @@ namespace BlogPessoal.src.controller
         #endregion
 
         #region Methods
+        /// <summary>
+        /// Criar novo tema
+        /// </summary>
+        /// <param name="theme">AddThemeDTO</param>
+        /// <returns>ActionResult</returns>
+        /// <remarks>
+        /// Exemplo de requisição:
+        ///
+        ///     POST /api/Themes
+        ///     {
+        ///       	"description": "Loli
+        ///     }
+        ///
+        /// </remarks>
+        /// <response code="200">Retorna Theme criado</response>
+        /// <response code="400">Erro na requisição</response>
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpPost]
         [Authorize]
         public async Task<ActionResult> AddThemeAsync([FromBody] AddThemeDTO theme)
@@ -36,7 +56,13 @@ namespace BlogPessoal.src.controller
             await _repository.AddThemeAsync(theme);
             return Created($"api/theme/{theme.Description}", theme);
         }
-
+        /// <summary>
+        /// Deletar tema pelo Id
+        /// </summary>
+        /// <param name="idtheme">int</param>
+        /// <returns>ActionResult</returns>
+        /// <response code="204">Usuario deletado</response>
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         [HttpDelete("delete/{idTheme}")]
         [Authorize(Roles ="ADMIN")]
         public async Task <ActionResult> DeleteUserAsync([FromRoute] int idtheme)
@@ -44,7 +70,15 @@ namespace BlogPessoal.src.controller
             await _repository.DeleteThemeAsync(idtheme);
             return NoContent();
         }
-
+        /// <summary>
+        /// Pegar o tema pelo id
+        /// </summary>
+        /// <param name="idtheme">int</param>
+        /// <returns>ActionResult</returns>
+        /// <response code="200">Retorna o tema</response>
+        /// <response code="404">Tema não existente</response>
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ThemeModel))]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpGet("id/{idtheme}")]
         [Authorize]
         public async Task <ActionResult> GetThemeByIdAsync([FromRoute] int idtheme)
@@ -56,7 +90,15 @@ namespace BlogPessoal.src.controller
 
             return Ok(theme);
         }
-
+        /// <summary>
+        /// Pegar o tema pela descrição
+        /// </summary>
+        /// <param name="description">int</param>
+        /// <returns>ActionResult</returns>
+        /// <response code="200">Retorna o tema</response>
+        /// <response code="404">Tema não existente</response>
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ThemeModel))]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpGet]
         [Authorize]
         public async Task<ActionResult> GetThemeByDescriptionAsync([FromQuery] string  description)
@@ -68,7 +110,25 @@ namespace BlogPessoal.src.controller
 
             return Ok(themes);
         }
-
+        /// <summary>
+        /// Atualizar tema
+        /// </summary>
+        /// <param name="theme">UpdateThemeDTO</param>
+        /// <returns>ActionResult</returns>
+        /// <remarks>
+        /// Exemplo de requisição:
+        ///
+        ///     PUT /api/Themes
+        ///     { 
+        ///         "id": 1,
+        ///       	"description": "Loli
+        ///     }
+        ///
+        /// </remarks>
+        /// <response code="200">Retorna Theme atualizado</response>
+        /// <response code="400">Erro na requisição</response>
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpPut]
         [Authorize(Roles ="ADMIN")]
         public async Task<ActionResult> UpdateThemeAsync([FromBody] UpdateThemeDTO theme)

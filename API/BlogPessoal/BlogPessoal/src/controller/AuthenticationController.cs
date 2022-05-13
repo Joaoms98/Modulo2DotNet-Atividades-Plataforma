@@ -24,7 +24,7 @@ namespace BlogPessoal.src.controladores
         #region Métodos
         [HttpPost]
         [AllowAnonymous]
-        public async Task<ActionResult> AuthenticateAsync([FromBody] AuthenticationDTO authentication)
+        public async Task<ActionResult> AuthenticationAsync([FromBody] AuthenticationDTO authentication)
         {
             if (!ModelState.IsValid) return BadRequest();
             try

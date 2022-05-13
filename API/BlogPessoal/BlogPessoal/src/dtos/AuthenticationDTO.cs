@@ -7,6 +7,12 @@ using System.Threading.Tasks;
 
 namespace BlogPessoal.src.dtos
 {
+    /// <summary>
+    /// <para>Resumo:Classe espelho para criar um token</para>
+    /// <para>Criado por: Joaoms98</para>
+    /// <para>Versão: 1.0</para>
+    /// <para>Data: 13/05/2022</para>
+    /// </summary>
     public class AuthenticationDTO
     {
         [Required]
@@ -19,6 +25,12 @@ namespace BlogPessoal.src.dtos
             Password = password;
         }
     }
+    /// <summary>
+    /// <para>Resumo:Classe espelho para autorização</para>
+    /// <para>Criado por: Joaoms98</para>
+    /// <para>Versão: 1.0</para>
+    /// <para>Data: 13/05/2022</para>
+    /// </summary>
     public class AuthorizationDTO
     {
         public int Id { get; set; }

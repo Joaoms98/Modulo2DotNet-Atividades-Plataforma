@@ -11,7 +11,6 @@ namespace BlogPessoal.src.repositors
     /// <para>Versão: 1.0</para>
     /// <para>Data: 29/04/2022</para>
     /// </summary>
-
     public interface IUser
     {
         Task AddUserAsync(AddUserDTO User);

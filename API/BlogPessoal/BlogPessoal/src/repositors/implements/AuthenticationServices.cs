@@ -13,6 +13,12 @@ using System.Threading.Tasks;
 
 namespace BlogPessoal.src.repositors.implements
 {
+    /// <summary>
+    /// <para>Resumo: Classe responsavel por implementar IAuthentication</para>
+    /// <para>Criado por: Joaoms98</para>
+    /// <para>Versão: 1.0</para>
+    /// <para>Data: 13/05/2022</para>
+    /// </summary>
     public class AuthenticationServices : IAuthentication
     {
         #region Atributos
@@ -27,8 +33,12 @@ namespace BlogPessoal.src.repositors.implements
             Configuration = configuration;
         }
         #endregion
-        
+
         #region methods
+        /// <summary>
+        /// <para>Resumo: Método assíncrono para não duplicar um usuário</para>
+        /// </summary>
+        /// <param name="dto">AddUserDTO</param>
         public async Task CreateUserWithoutDuplicateAsync(AddUserDTO dto)
         {
             var user = await _repository.GetUserByEmailAsync(dto.Email);
@@ -39,13 +49,20 @@ namespace BlogPessoal.src.repositors.implements
 
             await _repository.AddUserAsync(dto);
         }
-
+        /// <summary>
+        /// <para>Resumo: Método assíncrono para codificar a senha</para>
+        /// </summary>
+        /// <param name="password">AddUserDTO</param>
         public string EncodePassword(string password)
         {
             var bytes = Encoding.UTF8.GetBytes(password);
             return Convert.ToBase64String(bytes);
         }
-
+        /// <summary>
+        /// <para>Resumo: Método assíncrono para gerar o token de usuário</para>
+        /// </summary>
+        /// <param name="user">AddUserDTO</param>
+        /// <return>Token</return>
         public string GenerateToken(UserModel user)
         {
             var tokenManipulador = new JwtSecurityTokenHandler();
@@ -67,7 +84,10 @@ namespace BlogPessoal.src.repositors.implements
             var token = tokenManipulador.CreateToken(tokenDescription);         
             return tokenManipulador.WriteToken(token);
         }
-    
+        /// <summary>
+        /// <para>Resumo: Método assíncrono para autoriar o usuário</para>
+        /// </summary>
+        /// <param name="authentication">AddUserDTO</param>
         public async Task<AuthorizationDTO> GetAuthorizationAsync(AuthenticationDTO authentication)
         {
             var user = await _repository.GetUserByEmailAsync(authentication.Email);

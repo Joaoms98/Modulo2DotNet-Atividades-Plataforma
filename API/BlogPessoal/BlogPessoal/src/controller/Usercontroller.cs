@@ -1,7 +1,9 @@
 ﻿using BlogPessoal.src.dtos;
+using BlogPessoal.src.models;
 using BlogPessoal.src.repositors;
 using BlogPessoal.src.services;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -27,6 +29,15 @@ namespace BlogPessoal.src.controller
         #endregion
 
         #region Méthods
+        /// <summary>
+        /// Pegar usuario pelo Id
+        /// </summary>
+        /// <param name="idUser">int</param>
+        /// <returns>ActionResult</returns>
+        /// <response code="200">Retorna o usuario</response>
+        /// <response code="404">Usuario não existente</response>
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UserModel))]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpGet("id/{idUser}")]
         [Authorize(Roles ="NORMAL,ADMIN")]
         public async Task<ActionResult> GetUserByIdAsync([FromRoute] int idUser)
@@ -38,7 +49,15 @@ namespace BlogPessoal.src.controller
 
             return Ok(user);
         }
-
+        /// <summary>
+        /// Pegar usuario pelo nome
+        /// </summary>
+        /// <param name="UserName">int</param>
+        /// <returns>ActionResult</returns>
+        /// <response code="200">Retorna o usuario</response>
+        /// <response code="404">Usuario não existente</response>
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UserModel))]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpGet]
         [Authorize(Roles ="NORMAL,ADMIN")]
         public async Task<ActionResult> GetUserByNameAsync([FromQuery] string UserName)
@@ -50,7 +69,15 @@ namespace BlogPessoal.src.controller
 
             return Ok(users);
         }
-
+        /// <summary>
+        /// Pegar usuario pelo email
+        /// </summary>
+        /// <param name="emailUser">int</param>
+        /// <returns>ActionResult</returns>
+        /// <response code="200">Retorna o usuario</response>
+        /// <response code="404">Usuario não existente</response>
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UserModel))]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpGet("email/{emailUser}")]
         [Authorize(Roles ="NORMAL,ADMIN")]
         public async Task<ActionResult> GetUserByEmailAsync([FromRoute] string emailUser)
@@ -62,7 +89,30 @@ namespace BlogPessoal.src.controller
 
             return Ok(user);
         }
-
+        /// <summary>
+        /// Criar novo Usuario
+        /// </summary>
+        /// <param name="user">AddUserDTO</param>
+        /// <returns>ActionResult</returns>
+        /// <remarks>
+        /// Exemplo de requisição:
+        ///
+        ///     POST /api/Users
+        ///     {
+        ///        "nome": "Joao",
+        ///        "email": "Joao@domain.com",
+        ///        "senha": "134652",
+        ///        "foto": "URLFOTO",
+        ///        "tipo": "NORMAL"
+        ///     }
+        ///
+        /// </remarks>
+        /// <response code="201">Retorna usuario criado</response>
+        /// <response code="400">Erro na requisição</response>
+        /// <response code="401">E-mail ja cadastrado</response>
+        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(UserModel))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [HttpPost]
         [AllowAnonymous]
         public async Task<ActionResult> AddUserAsync([FromBody] AddUserDTO user)
@@ -81,7 +131,27 @@ namespace BlogPessoal.src.controller
             }
         }
 
-
+        /// <summary>
+        /// Atualizar Usuario
+        /// </summary>
+        /// <param name="user">UpdateUserDTO</param>
+        /// <returns>ActionResult</returns>
+        /// <remarks>
+        /// Exemplo de requisição:
+        ///
+        ///     PUT /api/Users
+        ///     {
+        ///        "id": 1,    
+        ///        "nome": "Joao2",
+        ///        "senha": "134652",
+        ///        "foto": "URLFOTO"
+        ///     }
+        ///
+        /// </remarks>
+        /// <response code="200">Retorna usuario atualizado</response>
+        /// <response code="400">Erro na requisição</response>
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpPut]
         [Authorize(Roles = "NORMAL,ADMIN")]
         public async Task<ActionResult> UpdateUserAsync([FromBody] UpdateUserDTO user)
@@ -94,7 +164,13 @@ namespace BlogPessoal.src.controller
             await _repository.UpdateUserAsync(user);
             return Ok(user);
         }
-
+        /// <summary>
+        /// Deletar usuario pelo Id
+        /// </summary>
+        /// <param name="iduser">int</param>
+        /// <returns>ActionResult</returns>
+        /// <response code="204">Usuario deletado</response>
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         [HttpDelete("delete/{idUser}")]
         [Authorize(Roles ="ADMIN")]
         public async Task<ActionResult> DeleteUserAsync([FromRoute] int iduser)
