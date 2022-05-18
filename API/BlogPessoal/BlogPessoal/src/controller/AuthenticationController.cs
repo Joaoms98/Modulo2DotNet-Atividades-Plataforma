@@ -22,6 +22,24 @@ namespace BlogPessoal.src.controladores
         #endregion
 
         #region Métodos
+        /// <summary>
+        /// Pegar Autorização
+        /// </summary>
+        /// <param name="authentication">AuthenticationDTO</param>
+        /// <returns>ActionResult</returns>
+        /// <remarks>
+        /// Exemplo de requisição:
+        ///
+        ///     POST /api/Autenticacao
+        ///     {
+        ///        "email": "joao@domain.com",
+        ///        "password": "134652"
+        ///     }
+        ///
+        /// </remarks>
+        /// <response code="201">Retorna usuario criado</response>
+        /// <response code="400">Erro na requisição</response>
+        /// <response code="401">E-mail ou senha invalido</response>
         [HttpPost]
         [AllowAnonymous]
         public async Task<ActionResult> AuthenticationAsync([FromBody] AuthenticationDTO authentication)

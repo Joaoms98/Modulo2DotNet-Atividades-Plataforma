@@ -49,13 +49,14 @@ namespace BlogPessoal.src.dtos
         [Required, StringLength(30)]
         public string Name { get; set; }
 
-        [Required, StringLength(30)]
+        [Required]
         public string Password { get; set; }
 
         public string Photograph { get; set; }
 
-        public UpdateUserDTO(string name, string password, string photograph,string type)
+        public UpdateUserDTO(int id, string name, string password, string photograph)
         {
+            Id = id;
             Name = name;
             Password = password;
             Photograph = photograph;

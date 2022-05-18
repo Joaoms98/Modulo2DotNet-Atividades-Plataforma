@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace BlogPessoal.src.repositors.implements
 {
+    /// <summary>
+    /// <para>Resumo: Classe responsavel por implementar IPost</para>
+    /// <para>Criado por: Joaoms98</para>
+    /// <para>Versão: 1.0</para>
+    /// <para>Data: 13/05/2022</para>
+    /// </summary>
     public class PostRepository : IPost
     {
-        /// <summary>
-        /// <para>Resumo: Classe responsavel por implementar IPost</para>
-        /// <para>Criado por: Joaoms98</para>
-        /// <para>Versão: 1.0</para>
-        /// <para>Data: 13/05/2022</para>
-        /// </summary>
         #region atributes
         private readonly AppBlogContext _context;
         #endregion atributes
@@ -59,7 +59,6 @@ namespace BlogPessoal.src.repositors.implements
         /// <summary>
         /// <para>Resumo: Método assíncrono para pegar um post pelo Id</para>
         /// </summary>
-        /// <param name="Posts"></param>
         /// <return>PostModel</return>
         public async Task <List<PostModel>> GetAllByPostsAsync()
         {
@@ -81,12 +80,12 @@ namespace BlogPessoal.src.repositors.implements
         /// <para>Resumo: Método assíncrono para pegar um post pela pesquisa</para>
         /// </summary>
         /// <param name="title">Dados do post</param>
-        /// <param name="descriptiontheme"></param>
-        /// <param name="namecriator"></param>
+        /// <param name="theme"></param>
+        /// <param name="creator"></param>
         /// <return>PostModel</return>
-        public async Task<List<PostModel>> GetPostsbySearchAsync(string title, string descriptiontheme, string namecriator)
+        public async Task<List<PostModel>> GetPostsbySearchAsync(string title, string theme, string creator)
         {
-            switch (title, descriptiontheme, namecriator)
+            switch (title, theme, creator)
             {
                 case (null, null, null):
                     return await GetAllByPostsAsync();
@@ -94,13 +93,13 @@ namespace BlogPessoal.src.repositors.implements
                     return await _context.Posts
                     .Include(p => p.Theme)
                     .Include(p => p.Creator)
-                    .Where(p => p.Creator.Name.Contains(namecriator))
+                    .Where(p => p.Creator.Name.Contains(creator))
                     .ToListAsync();
                 case (null, _, null):
                     return await _context.Posts
                     .Include(p => p.Theme)
                     .Include(p => p.Creator)
-                    .Where(p => p.Theme.Description.Contains(descriptiontheme))
+                    .Where(p => p.Theme.Description.Contains(theme))
                     .ToListAsync();
                 case (_, null, null):
                     return await _context.Posts
@@ -114,15 +113,15 @@ namespace BlogPessoal.src.repositors.implements
                     .Include(p => p.Creator)
                     .Where(p =>
                     p.Title.Contains(title) &
-                    p.Theme.Description.Contains(descriptiontheme))
+                    p.Theme.Description.Contains(theme))
                     .ToListAsync();
                 case (null, _, _):
                     return await _context.Posts
                     .Include(p => p.Theme)
                     .Include(p => p.Creator)
                     .Where(p =>
-                    p.Theme.Description.Contains(descriptiontheme) &
-                    p.Creator.Name.Contains(namecriator))
+                    p.Theme.Description.Contains(theme) &
+                    p.Creator.Name.Contains(creator))
                     .ToListAsync();
                 case (_, null, _):
                     return await _context.Posts
@@ -130,7 +129,7 @@ namespace BlogPessoal.src.repositors.implements
                     .Include(p => p.Creator)
                     .Where(p =>
                     p.Title.Contains(title) &
-                    p.Creator.Name.Contains(namecriator))
+                    p.Creator.Name.Contains(creator))
                     .ToListAsync();
                 case (_, _, _):
                     return await _context.Posts
@@ -138,8 +137,8 @@ namespace BlogPessoal.src.repositors.implements
                     .Include(p => p.Creator)
                     .Where(p =>
                     p.Title.Contains(title) |
-                    p.Theme.Description.Contains(descriptiontheme) |
-                    p.Creator.Name.Contains(namecriator))
+                    p.Theme.Description.Contains(theme) |
+                    p.Creator.Name.Contains(creator))
                     .ToListAsync();
             }
         }
@@ -156,7 +155,7 @@ namespace BlogPessoal.src.repositors.implements
             existingpost.Theme = _context.Themes.FirstOrDefault(
             t => t.Description == Post.Theme);
             _context.Posts.Update(existingpost);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
         #endregion
     }

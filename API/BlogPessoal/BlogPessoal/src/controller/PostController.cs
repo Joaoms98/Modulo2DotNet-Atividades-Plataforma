@@ -49,7 +49,6 @@ namespace BlogPessoal.src.controller
         /// <summary>
         /// Pegar todos os posts
         /// </summary>
-        /// <param name="PostModel">int</param>
         /// <returns>ActionResult</returns>
         /// <response code="200">Retorna todos os posts</response>
         /// <response code="204">nenhum post criado</response>
@@ -102,7 +101,7 @@ namespace BlogPessoal.src.controller
         ///        "Description":"I bought my first cute loli",
         ///        "Photograph":"sdsdsdsdsdssd",
         ///        "creator":"victor@gmail.com",
-        ///        "theme":"1"
+        ///        "theme":"loli"
         ///     }
         ///
         /// </remarks>
@@ -130,12 +129,11 @@ namespace BlogPessoal.src.controller
         ///
         ///     PUT /api/Posts
         ///     {
-   	    ///      "id": 1,
+   	    ///     "id": 1,
 	    ///     "title": "My new post",
 	    ///     "description":"About furrys",
 	    ///     "Photograph":"sdsdsdsds",
-	    ///     "EmailCreator":"victor@gmail.com",
-	    ///     "DescriptionTheme":"1"
+	    ///     "theme":"furry"
         ///     }
         ///
         /// </remarks>
@@ -145,7 +143,7 @@ namespace BlogPessoal.src.controller
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpPut]
         [Authorize]
-        public async Task<ActionResult> UpdatePostasync([FromBody] UpdatePostDTO post)
+        public async Task<ActionResult> UpdatePostAsync([FromBody] UpdatePostDTO post)
         {
             if (!ModelState.IsValid) return BadRequest();
 

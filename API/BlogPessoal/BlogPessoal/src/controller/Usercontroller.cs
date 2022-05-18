@@ -130,7 +130,6 @@ namespace BlogPessoal.src.controller
                 return Unauthorized(ex.Message);
             }
         }
-
         /// <summary>
         /// Atualizar Usuario
         /// </summary>

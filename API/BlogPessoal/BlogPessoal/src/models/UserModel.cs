@@ -25,7 +25,7 @@ namespace BlogPessoal.src.models
         [Required, StringLength(30)]
         public string Email { get; set; }
 
-        [Required, StringLength(30)]
+        [Required]
         public string Password { get; set; }
 
         public string Photograph { get; set; }

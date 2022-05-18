@@ -95,7 +95,7 @@ namespace BlogPessoal.src.repositors.implements
             userModel.Password = User.Password;
             userModel.Photograph = User.Photograph;
             _context.Users.Update(userModel);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
         #endregion métods
     }

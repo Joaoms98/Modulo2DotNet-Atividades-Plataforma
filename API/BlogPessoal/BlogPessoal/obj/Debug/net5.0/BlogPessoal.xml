@@ -4,6 +4,26 @@
         <name>BlogPessoal</name>
     </assembly>
     <members>
+        <member name="M:BlogPessoal.src.controladores.AuthenticationController.AuthenticationAsync(BlogPessoal.src.dtos.AuthenticationDTO)">
+             <summary>
+             Pegar Autorização
+             </summary>
+             <param name="authentication">AuthenticationDTO</param>
+             <returns>ActionResult</returns>
+             <remarks>
+             Exemplo de requisição:
+            
+                 POST /api/Autenticacao
+                 {
+                    "email": "joao@domain.com",
+                    "password": "134652"
+                 }
+            
+             </remarks>
+             <response code="201">Retorna usuario criado</response>
+             <response code="400">Erro na requisição</response>
+             <response code="401">E-mail ou senha invalido</response>
+        </member>
         <member name="M:BlogPessoal.src.controller.PostController.GetPostByIdAsync(System.Int32)">
             <summary>
             Pegar o post pelo id
@@ -17,7 +37,6 @@
             <summary>
             Pegar todos os posts
             </summary>
-            <param name="PostModel">int</param>
             <returns>ActionResult</returns>
             <response code="200">Retorna todos os posts</response>
             <response code="204">nenhum post criado</response>
@@ -48,14 +67,14 @@
                     "Description":"I bought my first cute loli",
                     "Photograph":"sdsdsdsdsdssd",
                     "creator":"victor@gmail.com",
-                    "theme":"1"
+                    "theme":"loli"
                  }
             
              </remarks>
              <response code="201">Retorna post criado</response>
              <response code="400">Erro na requisição</response>
         </member>
-        <member name="M:BlogPessoal.src.controller.PostController.UpdatePostasync(BlogPessoal.src.dtos.UpdatePostDTO)">
+        <member name="M:BlogPessoal.src.controller.PostController.UpdatePostAsync(BlogPessoal.src.dtos.UpdatePostDTO)">
              <summary>
              Atualizar um post
              </summary>
@@ -66,12 +85,11 @@
             
                  PUT /api/Posts
                  {
-                  "id": 1,
+                 "id": 1,
                  "title": "My new post",
                  "description":"About furrys",
                  "Photograph":"sdsdsdsds",
-                 "EmailCreator":"victor@gmail.com",
-                 "DescriptionTheme":"1"
+                 "theme":"furry"
                  }
             
              </remarks>
@@ -357,7 +375,7 @@
             </summary>
             <param name="authentication">AddUserDTO</param>
         </member>
-        <member name="F:BlogPessoal.src.repositors.implements.PostRepository._context">
+        <member name="T:BlogPessoal.src.repositors.implements.PostRepository">
             <summary>
             <para>Resumo: Classe responsavel por implementar IPost</para>
             <para>Criado por: Joaoms98</para>
@@ -382,7 +400,6 @@
             <summary>
             <para>Resumo: Método assíncrono para pegar um post pelo Id</para>
             </summary>
-            <param name="Posts"></param>
             <return>PostModel</return>
         </member>
         <member name="M:BlogPessoal.src.repositors.implements.PostRepository.GetPostByIdAsync(System.Int32)">
@@ -397,8 +414,8 @@
             <para>Resumo: Método assíncrono para pegar um post pela pesquisa</para>
             </summary>
             <param name="title">Dados do post</param>
-            <param name="descriptiontheme"></param>
-            <param name="namecriator"></param>
+            <param name="theme"></param>
+            <param name="creator"></param>
             <return>PostModel</return>
         </member>
         <member name="M:BlogPessoal.src.repositors.implements.PostRepository.UpdatePostAsync(BlogPessoal.src.dtos.UpdatePostDTO)">
